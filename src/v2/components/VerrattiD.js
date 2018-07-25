@@ -8,7 +8,7 @@ import { ProgressCircle } from 'react-desktop/windows';
 
 import { Box, Text } from 'react-desktop/macOs';
 
-import './VerrattiW.css';
+import '../css/VerrattiW.css';
 
 function prepareData(details) {
     var formBody = [];

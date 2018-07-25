@@ -1,0 +1,79 @@
+.margin-auto {
+    margin: auto;
+}
+
+.display-flex {
+    display: flex;
+}
+
+.center-div {
+    width: 50%;
+    margin: auto;
+}
+
+.welcome-text {
+    text-align: center;
+    font-family: "Montserrat",Helvetica,Arial,sans-serif;
+    margin-top: 16px;
+    margin-bottom: 32px;
+}
+
+.login-form {
+
+}
+
+.login-form .input-group {
+    width: 50%;
+    margin: auto;
+}
+
+.login-form .login-button {
+    width: 50%;
+    background-color: #746EA9;
+    border: solid 2px transparent;
+    border-radius: 8px;
+
+    box-shadow: 0px 5px #ccc;
+}
+
+.login-form .login-button p {
+    font-family: "Montserrat",Helvetica,Arial,sans-serif;
+    font-size: 24px;
+
+    text-decoration: none;
+    text-shadow: none;
+    text-align: center;
+    color: #fff;
+
+    margin: auto;
+}
+
+.login-form .forgot-password {
+
+    text-align: right;
+
+    font-family: "Montserrat",Helvetica,Arial,sans-serif;
+    font-size: 12px;
+
+}
+
+.login-form .forgot-password:hover{
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.am-new {
+    font-size: 20px;
+    font-family: "Montserrat",Helvetica,Arial,sans-serif;
+}
+
+.signup {
+    font-size: 20px;
+    font-family: "Montserrat",Helvetica,Arial,sans-serif;
+    text-decoration: underline;
+    font-weight: bold;
+}
+.signup:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}

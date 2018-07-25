@@ -1,0 +1,202 @@
+.global-header {
+    margin-bottom: 10px;
+}
+
+.inline-display {
+    display: inline;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.language-selector {
+    float: left;
+}
+
+.language-selector small {
+    margin: 0px 10px;
+}
+
+.account-actions {
+    float: right;
+}
+
+.account-actions small {
+    margin: 0px 10px;
+}
+
+/*Overall Nav*/
+.custom-navbar {
+    font-size: 24px;
+    padding: 6px;
+    /*background-color: #746EA9;*/
+    border: solid 1px #746EA9;
+    box-shadow: 0px 5px #ccc;
+    margin: auto;
+}
+
+/*Nav link list*/
+.nav-list {
+
+}
+
+/*.nav-list li a {*/
+    /*text-decoration: none;*/
+    /*text-shadow: none;*/
+    /*color: #746EA9;*/
+    /*font-family: "Montserrat",Helvetica,Arial,sans-serif;*/
+/*}*/
+
+/*.nav-list li:hover {*/
+    /*background-color: #746EA9;*/
+/*}*/
+
+/*.nav-list li:hover a {*/
+    /*color: #fff;*/
+/*}*/
+
+/*.nav-list li:focus {*/
+    /*background-color: #B5AFFF;*/
+/*}*/
+
+.nav-item:hover {
+    background-color: #746EA9;
+}
+
+.nav-item:hover .nav-item-link {
+    color: #fff;
+}
+.nav-item:focus {
+    background-color: #B5AFFF;
+}
+
+.nav-item .nav-item-link {
+    text-decoration: none;
+    text-shadow: none;
+    color: #746EA9;
+    font-family: "Montserrat",Helvetica,Arial,sans-serif;
+}
+
+#nav-item-drop {
+    text-decoration: none;
+    text-shadow: none;
+    color: #746EA9;
+    font-family: "Montserrat",Helvetica,Arial,sans-serif;
+}
+
+#nav-item-drop:hover {
+    background-color: var(--neutral-purple);
+    color: #fff;
+}
+
+.dropdown-menu>li>a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857143;
+    white-space: nowrap;
+
+
+    color: var(--neutral-purple);
+    background-color: #fff;
+}
+
+.dropdown-menu>li>a>a {
+    color: var(--neutral-purple);
+    background-color: #fff;
+}
+
+.dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover {
+    background-color: var(--neutral-purple);
+    color: #fff;
+    text-shadow: none;
+    text-decoration: none;
+    background-image: none;
+}
+
+.dropdown-menu>li>a:focus a, .dropdown-menu>li>a:hover a {
+    background-color: var(--neutral-purple);
+    color: #fff;
+    text-shadow: none;
+    text-decoration: none;
+    background-image: none;
+}
+
+
+/*.nav-item-droplink:hover {*/
+    /*color: #fff;*/
+    /*background-color: var(--neutral-purple);*/
+/*}*/
+
+/*overide*/
+/*.navbar-default .navbar-nav>li>a {*/
+    /*color: #746EA9;*/
+/*}*/
+
+/*.navbar-default .navbar-nav>li:hover {*/
+    /*background-color: #746EA9;*/
+/*}*/
+
+/*.navbar-default .navbar-nav>li:hover a{*/
+    /*color: #fff;*/
+/*}*/
+
+/*Navbar from boosotrap css*/
+.navbar {
+    min-height: 80px;
+}
+
+.navbar-brand {
+    padding: 0 15px;
+    height: 80px;
+    line-height: 80px;
+}
+
+.navbar-toggle {
+    /* (80px - button height 34px) / 2 = 23px */
+    margin-top: 23px;
+    padding: 9px 10px !important;
+}
+
+@media (min-width: 768px) {
+    .navbar-nav > li > a {
+        /* (80px - line-height of 27px) / 2 = 26.5px */
+        padding-top: 26.5px;
+        padding-bottom: 26.5px;
+        line-height: 27px;
+    }
+}
+
+/*Logo*/
+.custom-header {
+    border-right: solid 3px #746EA9;
+}
+
+.wrapper-link {
+    padding: 0px;
+    display: flex;
+    margin-right: 16px;
+}
+
+.infibook-logo {
+    max-height: 80px;
+    box-shadow: 5px 5px #ccc;
+    border: solid;
+}
+
+.custom-brand {
+    font-size: 32px;
+}
+
+/*dropdown profile*/
+.profile-dropdown {
+
+}
+
+/*.profile-dropdown li:hover {*/
+    /*color: var(--neutral-purple);*/
+/*}*/
+
+/*.profile-dropdown li:hover a {*/
+    /*color: var(--neutral-purple);*/
+/*}*/

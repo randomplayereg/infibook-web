@@ -5,14 +5,64 @@ import {Grid, Row, Col, Modal, Tab, Tabs, Image, Label, Well, Badge, ButtonGroup
 
 import { Box, Text } from 'react-desktop/macOs';
 
-import Geocode from "./Utils/Geocode";
+import Geocode from "../Utils/Geocode";
 
 import {geolocated} from 'react-geolocated';
 
-import MyFancyComponent from '../components/MyFancyComponent';
+import MyFancyComponent from '../../components/MyFancyComponent';
 import NavigationM from "./NavigationM";
 
-import './VerrattiC.css';
+import '../css/VerrattiC.css';
+
+
+import LocalizedStrings from 'react-localization';
+let ruben = new LocalizedStrings({
+    en:{
+        // Navigation
+        home: "HomePage",
+        library: "Library",
+        transaction: "Transaction",
+        account: "My account",
+        signin: "Sign in",
+        signup: "Sign up"
+    },
+    vi: {
+        // Navigation
+        home: "Trang chủ",
+        library: "Danh mục",
+        transaction: "Trao đổi",
+        account: "Tài khoản",
+        signin: "Đăng nhập",
+        signup: "Đăng ký",
+
+        // Transaction detail
+        owner: "Chủ sở hữu",
+        requester: "Người mượn",
+        status: "Trạng thái sách",
+        no_recent_message: "Không có tin nhắn nào được gửi đi qua lần trả lời gần nhất",
+        cancel_request: "Hủy",
+        write_a_message: "Viết một tin nhắn",
+
+        status_set: {
+            3: "3",
+            4: "4",
+            5: "Giao dịch bị từ chối hoặc hủy bỏ",
+            6: "6",
+            7: "7",
+            8: "8",
+            9: "9",
+            10: "10",
+            11: "11",
+            12: "12",
+            13: "13",
+            14: "14",
+            15: "15",
+            16: "16",
+        },
+    }
+});
+
+
 
 function prepareData(details) {
     var formBody = [];
@@ -51,7 +101,7 @@ const MessageBox = (props) => (
         <ControlLabel><h4>Bạn có thể nhắn tin trả lời vào bên dưới: </h4></ControlLabel>
         <FormControl
             componentClass="textarea"
-            placeholder="Viết một tin nhắn"
+            placeholder={ruben.write_a_message}
             onChange={props.onChange}
         />
     </FormGroup>
@@ -87,10 +137,12 @@ class SelectionControl extends React.Component {
     }
 }
 
-class VerrattiC extends React.Component {
+class ExchangeDetail extends React.Component {
 
     constructor(props, context) {
         super(props, context);
+
+        ruben.setLanguage('vi');
 
         this.messageChange = this.messageChange.bind(this);
 
@@ -280,9 +332,10 @@ class VerrattiC extends React.Component {
 
         return (
             <Row style={{marginTop: '13px'}}>
-                <div>
-                    <Button bsStyle="danger" bsSize="large" onClick={cancelRequest}>
-                        Cancel
+                <div className="flex-container">
+
+                    <Button bsSize="large" className="action-button cancel" onClick={this.O3_declineRequest}>
+                        {ruben.cancel_request}
                     </Button>
                 </div>
             </Row>
@@ -448,32 +501,32 @@ class VerrattiC extends React.Component {
                 </Row>,
 
                 <Row>
-                    <div >
-                        <Button bsStyle="warning" bsSize="large" onClick={this.handleShowDirection}>
-                            Show direction
+                    <div className="flex-container">
+                        <Button bsSize="large" className="action-button view" onClick={this.handleShowDirection}>
+                            Xem trên bản đồ
                         </Button>
                     </div>
                 </Row>,
 
                 <Row>
-                    <div>
-                        <Button bsStyle="success" bsSize="large" onClick={this.R4_acceptRequest}>
-                            Accept
+                    <div className="flex-container">
+                        <Button bsSize="large" className="action-button accept" onClick={this.R4_acceptRequest}>
+                            Chấp nhận
                         </Button>
-                        </div>
+                    </div>
                 </Row>,
 
                 <Row>
-                    <div>
-                        <Button bsStyle="primary" bsSize="large" onClick={this.R4_declineRequest}>
-                            Decline
+                    <div className="flex-container">
+                        <Button bsSize="large" className="action-button cancel" onClick={this.R4_declineRequest}>
+                            Từ chối
                         </Button>
                     </div>
                 </Row>,
 
                 <Row>
                     {this.state && this.state.important && this.state.address &&
-                    <Modal show={this.state.directionShow} onHide={this.handleCloseDirection}>
+                    <Modal dialogClassName="custom-modal" show={this.state.directionShow} onHide={this.handleCloseDirection}>
 
                         <Modal.Header closeButton>
                             <Modal.Title>Xem quang duong di</Modal.Title>
@@ -517,16 +570,17 @@ class VerrattiC extends React.Component {
 
         return(
             [
-            <Row style={{marginTop: '13px'}}>
-                <div >
-                    <Button bsStyle="warning" bsSize="large" onClick={this.handleShowDirection}>
-                        Show direction
+            <Row>
+                <div className="flex-container" style={{marginTop: '12px'}}>
+                    <Button bsSize="large" className="action-button view" onClick={this.handleShowDirection}>
+                        Xem trên bản đồ
                     </Button>
                 </div>
             </Row>,
+
             <Row>
                 {this.state && this.state.important && this.state.address &&
-                <Modal show={this.state.directionShow} onHide={this.handleCloseDirection}>
+                <Modal dialogClassName="custom-modal" show={this.state.directionShow} onHide={this.handleCloseDirection}>
 
                     <Modal.Header closeButton>
                         <Modal.Title>Xem quang duong di</Modal.Title>
@@ -625,13 +679,17 @@ class VerrattiC extends React.Component {
                     <h4>Địa điểm nhận: {`${ownerLocation.detail}, ${ownerLocation.ward}, ${ownerLocation.district}, ${ownerLocation.city}`}</h4>
                 </Row>,
 
-
                 <Row>
-                    <div >
-                        <Button bsStyle="warning" bsSize="large" onClick={this.handleShowDirection}>
+                    <div className="flex-container" style={{marginTop: '12px'}}>
+                        <Button bsSize="large" className="action-button view" onClick={this.handleShowDirection}>
                             Xem trên bản đồ
                         </Button>
-                        <Button bsStyle="success" bsSize="large" onClick={this.R6_tookBook}>
+                    </div>
+                </Row>,
+
+                <Row>
+                    <div className="flex-container">
+                        <Button bsSize="large" className="action-button accept" onClick={this.R6_tookBook}>
                             Tôi đã lấy sách
                         </Button>
                     </div>
@@ -639,7 +697,7 @@ class VerrattiC extends React.Component {
 
                 <Row>
                     {this.state && this.state.important && this.state.address &&
-                    <Modal show={this.state.directionShow} onHide={this.handleCloseDirection}>
+                    <Modal dialogClassName="custom-modal" show={this.state.directionShow} onHide={this.handleCloseDirection}>
 
                         <Modal.Header closeButton>
                             <Modal.Title>Xem quang duong di</Modal.Title>
@@ -747,9 +805,9 @@ class VerrattiC extends React.Component {
             </Row>,
 
             <Row>
-                <div >
-                    <Button bsStyle="primary" bsSize="large" onClick={this.R8_requestReturn}>
-                        Tôi muốn trả sách
+                <div className="flex-container" style={{marginTop: '12px'}}>
+                    <Button bsSize="large" className="action-button cancel" onClick={this.R8_requestReturn}>
+                        Tôi đã lấy sách
                     </Button>
                 </div>
             </Row>,
@@ -888,22 +946,32 @@ class VerrattiC extends React.Component {
                 </Row>,
 
                 <Row>
-                    <div >
-                        <Button bsStyle="warning" bsSize="large" onClick={this.handleShowDirection}>
-                            Show direction
+                    <div className="flex-container">
+                        <Button bsSize="large" className="action-button view" onClick={this.handleShowDirection}>
+                            Xem trên bản đồ
                         </Button>
-                        <Button bsStyle="success" bsSize="large" onClick={this.R12_acceptRequest}>
-                            Accept
+                    </div>
+                </Row>,
+
+                <Row>
+                    <div className="flex-container">
+                        <Button bsSize="large" className="action-button accept" onClick={this.R12_acceptRequest}>
+                            Chấp nhận
                         </Button>
-                        <Button bsStyle="primary" bsSize="large" onClick={this.R12_declineRequest}>
-                            Decline
+                    </div>
+                </Row>,
+
+                <Row>
+                    <div className="flex-container">
+                        <Button bsSize="large" className="action-button decline" onClick={this.R12_declineRequest}>
+                            Từ chối
                         </Button>
                     </div>
                 </Row>,
 
                 <Row>
                     {this.state && this.state.important && this.state.address &&
-                    <Modal show={this.state.directionShow} onHide={this.handleCloseDirection}>
+                    <Modal dialogClassName="custom-modal" show={this.state.directionShow} onHide={this.handleCloseDirection}>
 
                         <Modal.Header closeButton>
                             <Modal.Title>Xem quang duong di</Modal.Title>
@@ -963,17 +1031,17 @@ class VerrattiC extends React.Component {
                     <h4>Ngày trả: {`${convertTime(data.time_expire_exchange)}`}</h4>
                 </Row>,
 
-                <Row style={{marginTop: '13px'}}>
-                    <div >
-                        <Button bsStyle="warning" bsSize="large" onClick={this.handleShowDirection}>
-                            Show direction
+                <Row>
+                    <div className="flex-container" style={{marginTop: '13px'}}>
+                        <Button bsSize="large" className="action-button view" onClick={this.handleShowDirection}>
+                            Xem trên bản đồ
                         </Button>
                     </div>
                 </Row>,
 
                 <Row>
                     {this.state && this.state.important && this.state.address &&
-                    <Modal show={this.state.directionShow} onHide={this.handleCloseDirection}>
+                    <Modal dialogClassName="custom-modal" show={this.state.directionShow} onHide={this.handleCloseDirection}>
 
                         <Modal.Header closeButton>
                             <Modal.Title>Xem quang duong di</Modal.Title>
@@ -1272,7 +1340,6 @@ class VerrattiC extends React.Component {
                         <Button onClick={this.customizeDeviceLocation}> Thêm địa điểm thủ công</Button>
                     </ButtonGroup>
                 </Row>,
-
                 <Row>
                     <h4>
                         Địa điểm nhận: {this.state && this.state.address && this.state.address.toString}
@@ -1280,15 +1347,22 @@ class VerrattiC extends React.Component {
                 </Row>,
 
                 <Row>
-                    <div >
-                        <Button bsSize="large" bsStyle="success" onClick={this.O3_acceptRequest}>
+                    <div className="flex-container">
+                        <Button bsSize="large" className="action-button accept" onClick={this.O3_acceptRequest}>
                             Chấp nhận
                         </Button>
-                        <Button bsSize="large" bsStyle="primary" onClick={this.O3_declineRequest}>
-                            Từ chối
-                        </Button>
                     </div>
-                </Row>
+                </Row>,
+
+                <Row>
+                    <div className="flex-container">
+
+                    <Button bsSize="large" className="action-button decline" onClick={this.O3_declineRequest}>
+                        Từ chối
+                    </Button>
+                    </div>
+
+                </Row>,
             ]
         )
     }
@@ -1361,8 +1435,13 @@ class VerrattiC extends React.Component {
                 </Row>,
 
                 <Row>
-                    <div style={{float: 'right', marginTop: '13px'}}>
-                        <Button bsStyle="success" bsSize="large" onClick={this.O15_changeBookStatus}>
+                    {/*<div style={{float: 'right', marginTop: '13px'}}>*/}
+                        {/*<Button bsStyle="success" bsSize="large" onClick={this.O15_changeBookStatus}>*/}
+                            {/*Chuyển trạng thái sách sang sẵn sàng*/}
+                        {/*</Button>*/}
+                    {/*</div>,*/}
+                    <div className="flex-container">
+                        <Button bsSize="large" className="action-button accept" onClick={this.O15_changeBookStatus}>
                             Chuyển trạng thái sách sang sẵn sàng
                         </Button>
                     </div>
@@ -1427,12 +1506,18 @@ class VerrattiC extends React.Component {
                 <h4>Địa điểm nhận: {`${ownerLocation.detail}, ${ownerLocation.ward}, ${ownerLocation.district}, ${ownerLocation.city}`}</h4>
             </Row>,
             <Row>
-                <div style={{float: 'right', marginTop: '13px'}}>
-                    <Button bsStyle="danger" bsSize="large" onClick={this.O6_notReady}>
+                {/*<div style={{float: 'right', marginTop: '13px'}}>*/}
+                    {/*<Button bsStyle="danger" bsSize="large" onClick={this.O6_notReady}>*/}
+                        {/*Chuyển trạng thái sách về chưa sẵn sàng*/}
+                    {/*</Button>*/}
+                {/*</div>*/}
+
+                <div className="flex-container">
+                    <Button bsSize="large" className="action-button decline" onClick={this.O6_notReady}>
                         Chuyển trạng thái sách về chưa sẵn sàng
                     </Button>
                 </div>
-            </Row>
+            </Row>,
             ]
         )
     }
@@ -1582,12 +1667,26 @@ class VerrattiC extends React.Component {
     }
 
     renderO11() {
+        const data = this.state.transactionData;
+        const ownerLocation = data.location;
         return(
             [
                 <Row>
                     <MessageBox
                     onChange={this.messageChange}
                     />
+                </Row>,
+
+                <Row>
+                    <h4>Địa điểm nhận: {`${ownerLocation.detail}, ${ownerLocation.ward}, ${ownerLocation.district}, ${ownerLocation.city}`}</h4>
+                </Row>,
+
+                <Row>
+                    <h4>Ngày bắt đầu: {`${convertTime(data.time_start_exchange)}`}</h4>
+                </Row>,
+
+                <Row>
+                    <h4>Ngày trả: {`${convertTime(data.time_expire_exchange)}`}</h4>
                 </Row>,
 
                 <Row>
@@ -1608,20 +1707,27 @@ class VerrattiC extends React.Component {
 
                 <Row>
                     <h4>
-                        Địa điểm nhận sách: {this.state && this.state.address && this.state.address.toString}
+                        Địa điểm trả sách: {this.state && this.state.address && this.state.address.toString}
                     </h4>
                 </Row>,
 
                 <Row>
-                    <div >
-                        <Button bsSize="large" bsStyle="success" onClick={this.O11_acceptReturn}>
+                    <div className="flex-container">
+                        <Button bsSize="large" className="action-button accept" onClick={this.O11_acceptReturn}>
                             Chấp nhận
                         </Button>
-                        <Button bsSize="large" bsStyle="primary" onClick={this.O11_declineReturn}>
+                    </div>
+                </Row>,
+
+                <Row>
+                    <div className="flex-container">
+
+                        <Button bsSize="large" className="action-button decline" onClick={this.O11_declineReturn}>
                             Từ chối
                         </Button>
                     </div>
-                </Row>
+
+                </Row>,
             ]
         )
     }
@@ -1721,12 +1827,12 @@ class VerrattiC extends React.Component {
                 </Row>,
 
                 <Row>
-                    <div >
-                        <Button bsSize="large" bsStyle="success" onClick={this.O16_retrieveBook}>
-                            Chấp nhận
+                    <div className="flex-container">
+                        <Button bsSize="large" className="action-button accept" onClick={this.O16_retrieveBook}>
+                            Tôi đã lấy sách
                         </Button>
                     </div>
-                </Row>
+                </Row>,
             ]
         )
     }
@@ -2125,6 +2231,7 @@ class VerrattiC extends React.Component {
 
         switch (key) {
             case 2: {
+                if (!this.props.isGeolocationEnabled) { alert('GeoLocation not enabled!'); return;}
                 this.convertLatLng(this.props.coords.latitude, this.props.coords.longitude);
                 break;
             }
@@ -2431,7 +2538,8 @@ class VerrattiC extends React.Component {
 
     renderCustomLocationModal() {
         return (
-            <Modal show={this.state.customLocationShow} onHide={this.handleClose}>
+            <Modal show={this.state.customLocationShow} onHide={this.handleClose} dialogClassName="custom-modal"
+            >
                 <Modal.Header closeButton>
                     <Modal.Title>Thêm địa điểm thủ công</Modal.Title>
                 </Modal.Header>
@@ -2539,22 +2647,24 @@ const TransactionInfo = (props) => {
             case '5':
                 return 'Giao dich bi huy';
             case '3':
-                return isOwner ? 'Co nguoi gui request' : 'Cho doi hoi am';
+                // return isOwner ? 'Chờ phản hồi của chủ sách' : 'Cho doi hoi am';
+                return 'Chờ phản hồi của chủ sách';
 
             case '4':
-                return isOwner ? 'REply dia chi' : 'Waiting';
+                // return isOwner ? 'REply dia chi' : 'Waiting'
+            return 'Chủ sách đã đồng ý cho mượn, nhưng sách chưa sẵn sàng để lấy, vui lòng chờ tín hiệu của chủ sách';
 
             case '15':
-                return isOwner ? 'O15' : 'R15';
-
+                // return isOwner ? 'O15' : 'R15';
+                return "Sách hiện tại đã có thể lấy từ chủ sách"
             case '6':
                 return isOwner ? 'O6' : 'R6';
 
             case '8':
-                return isOwner ? 'O8' : 'R8';
+                return isOwner ? 'Người mượn đã lấy sách' : 'R8';
 
             case '11':
-                return isOwner ? 'O11' : 'R11';
+                return isOwner ? 'Người mượn muốn trả sách cho bạn' : 'R11';
 
             case '12':
                 return isOwner ? 'O12' : 'R12';
@@ -2570,6 +2680,9 @@ const TransactionInfo = (props) => {
 
     return (
         [
+            <Row className="title-activity">
+                <h2 style={{margin: 'auto'}}>Chi tiết giao dịch</h2>
+            </Row>,
             <Row style={{marginTop: '15px'}}>
                 <Col md={12} style={styles.infoContainer}>
                     <Col md={5} style={{margin: 'auto'}}>
@@ -2591,7 +2704,7 @@ const TransactionInfo = (props) => {
                         </Row>
     
                         <Row>
-                            <h4>Trạng thái sách: {statusToString(props.info.status.toString(), currentEmail === props.owner_email)}</h4>
+                            <h4>Trạng thái sách: {statusToString(props.info.status.toString(), currentEmail === props.info.owner_email)}</h4>
                         </Row>
                     </Col>
                 </Col>
@@ -2619,4 +2732,4 @@ geolocated({
     },
     userDecisionTimeout: 5000,
 })
-(VerrattiC);
+(ExchangeDetail);

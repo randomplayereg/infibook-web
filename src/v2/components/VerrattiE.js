@@ -3,9 +3,8 @@ import NavigationM from "./NavigationM";
 
 import {Grid, Row, Col, Tab, Nav, NavItem, ButtonGroup, Button} from 'react-bootstrap';
 
-import './VerrattiQ.css';
+import '../css/VerrattiQ.css';
 
-import './VerrattiE.css';
 
 const SideNav = (props) => {
 
@@ -218,9 +217,9 @@ class VerrattiE extends React.Component {
     render(){
         return(
             <div>
-                <NavigationM
-                    clicked={'Transaction'}
-                />
+                {/*<NavigationM*/}
+                    {/*clicked={'Transaction'}*/}
+                {/*/>*/}
 
                 <Grid>
                     <Row style={{marginTop: '16px'}}>

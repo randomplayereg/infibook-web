@@ -5,7 +5,7 @@ import NavigationM from "./NavigationM";
 
 import { ProgressCircle } from 'react-desktop/windows';
 
-import './VerrattiQ.css';
+import '../css/VerrattiQ.css';
 
 const BreadFast = (props) => {
 
@@ -159,7 +159,7 @@ const PanelBlyat = (props) => {
     )
 };
 
-class VerrattiQ extends React.Component {
+class Bookshelf extends React.Component {
     constructor(props){
         super(props);
 
@@ -262,8 +262,8 @@ class VerrattiQ extends React.Component {
     render() {
         return(
             <div>
-                <NavigationM
-                    clicked={'Library'}/>
+                {/*<NavigationM*/}
+                    {/*clicked={'Library'}/>*/}
 
                 <Grid>
                     <Row>
@@ -336,4 +336,4 @@ class VerrattiQ extends React.Component {
     }
 }
 
-export default VerrattiQ;
+export default Bookshelf;

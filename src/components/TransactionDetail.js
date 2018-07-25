@@ -2001,7 +2001,7 @@ class TransactionDetail extends React.Component {
                     <div 
                         style={styles.frontend}
                         >
-                        <Image src={require('../images/marker_blue.png')} width='40px' height='40px'/>
+                        {/*<Image src={require('../images/marker_blue.png')} width='40px' height='40px'/>*/}
                     </div>
                 </div>
                 <div>

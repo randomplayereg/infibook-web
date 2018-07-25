@@ -1,6 +1,6 @@
 import React from "react";
-import { Button, FormGroup, FormControl, InputGroup, Glyphicon, Modal } from "react-bootstrap";
-import "./Login.css";
+import { Button, FormGroup, FormControl, InputGroup, Glyphicon, Modal, Grid } from "react-bootstrap";
+import "../css/Authorization.css";
 
 import bg from "../images/login_bg.jpg";
 
@@ -99,8 +99,9 @@ class Authorization extends React.Component {
         const styles = {
             backgr: {
                 background: `url(${bg})`,
+                backgroundSize: 'cover',
                 width: '100%',
-                minHeight: '1080px'
+                minHeight: '800px'
             },
             form: {
                 marginTop: '10%'
@@ -123,7 +124,8 @@ class Authorization extends React.Component {
         };
 
         return (
-            <div style={styles.backgr}>
+            <Grid>
+                <div style={styles.backgr}>
                 <Modal show={this.state.show} onHide={this.handleClose}>
                     <Modal.Body>
                         <ProgressCircle
@@ -176,7 +178,7 @@ class Authorization extends React.Component {
                             </FormGroup>
 
                             <div>
-                                <a style={styles.rightFloat}>Forgot password?</a>
+                                <span style={styles.rightFloat}>Forgot password?</span>
                             </div>
 
                             <div className="button-container">
@@ -199,7 +201,7 @@ class Authorization extends React.Component {
                                     color: 'white',
                                     fontSize: '13px'
                                 }}>
-                                Sign in with Facebook
+                                Đăng nhập với Facebook
                             </Button>
 
                             <Button
@@ -210,14 +212,15 @@ class Authorization extends React.Component {
                                     color: 'white',
                                     fontSize: '13px'
                                 }}>
-                                Sign in with Google
+                                Đăng nhập với Google
                             </Button>
 
-                            <p style={{textAlign: 'center', marginTop: '10px'}}>Don't have an account? <strong><a>SignUp</a></strong></p>
+                            <p style={{textAlign: 'center', marginTop: '10px'}}>Bạn chưa có tài khoản?<strong><u>SignUp</u></strong></p>
                         </form>
                     </div>
                 </div>
             </div>
+            </Grid>
         );
     }
 }

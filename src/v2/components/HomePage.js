@@ -2,7 +2,7 @@ import React from 'react';
 import NavigationM from "./NavigationM";
 import SpotlightM from "./SpotlightM";
 
-class Verratti extends React.Component {
+class HomePage extends React.Component {
     constructor(props){
         super(props);
     }
@@ -10,12 +10,13 @@ class Verratti extends React.Component {
     render() {
         return(
             <div>
-                <NavigationM
-                    clicked={'Home'}/>
+                {/*<NavigationM*/}
+                    {/*clicked={'HomePage'}*/}
+                {/*/>*/}
                 <SpotlightM />
             </div>
         )
     }
 }
 
-export default Verratti;
+export default HomePage;

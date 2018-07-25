@@ -5,10 +5,10 @@ import {Grid, Row, Col, Modal, Image, Button, Panel} from 'react-bootstrap';
 
 import { ProgressCircle } from 'react-desktop/windows';
 
-import './VerrattiW.css';
+import '../css/VerrattiW.css';
 
 import {Sidebar} from 'primereact/components/sidebar/Sidebar';
-import MyFancyComponent from '../components/MyFancyComponent';
+import MyFancyComponent from '../../components/MyFancyComponent'
 
 function prepareData(details) {
     var formBody = [];
@@ -129,12 +129,12 @@ const OwnerList = (props) => {
                             <Row md={2}/>
 
                             <Row md={8}>
-                                <h4>Dia chi chu sach: {addr}</h4>
-                                <h4>Su dung de: muon</h4>
-                                <h4>Thoi gian cho muon: {parseInt(instance.book.duration) % 7 === 0 ? `${parseInt(instance.book.duration) / 7} tuan` : `${instance.book.duration} ngay` }</h4>
-                                <h4>Co san: {instance.book.available === true ? `Co` : `Khong`}</h4>
-                                <h4>Noi dung lien quan: </h4>
-                                <h4>Cam nhan cua chu sach: {instance.book.review}</h4>
+                                <h4>Địa chỉ chủ sách: {addr}</h4>
+                                <h4>Sử dụng để: mượn</h4>
+                                <h4>Thời gian cho phép: {parseInt(instance.book.duration) % 7 === 0 ? `${parseInt(instance.book.duration) / 7} tuần` : `${instance.book.duration} ngày` }</h4>
+                                <h4>Có sẵn: {instance.book.available === true ? `Có` : `Không`}</h4>
+                                <h4>Nội dung liên quan: </h4>
+                                <h4>Cảm nhận của chủ sách: {instance.book.review}</h4>
                             </Row>
 
                             <Row md={2}/>
@@ -145,13 +145,13 @@ const OwnerList = (props) => {
                             style={{float: 'right'}}
                             onClick={()=>props.sendRequest(instance.book.code)}
                         >
-                            Muon
+                            Gửi yêu cầu
                         </Button>
                         <Button
                             style={{float: 'right'}}
                             onClick={()=>props.showDirection(addr, instance.book.location.lat, instance.book.location.lng)}
                         >
-                            Xem tren ban do
+                            Xem trên bản đồ
                         </Button>
                     </Panel.Footer>
                 </Panel>
@@ -166,7 +166,7 @@ const OwnerList = (props) => {
     )
 };
 
-class VerrattiW extends React.Component {
+class BookDetail extends React.Component {
     constructor(props){
         super(props);
 
@@ -373,11 +373,19 @@ class VerrattiW extends React.Component {
                         <Panel
                             // style={{marginBottom: '0px'}}
                         >
-                            <Panel.Heading>Thông tin cuốn sách</Panel.Heading>
+                            <Panel.Heading
+                                style={{
+                                    border: 'solid 1px #9b859b',
+                                    color: '#9b859b',
+                                    backgroundColor: '#fff'
+                                }}
+                            >
+                                <h4><b>Thông tin sách</b></h4>
+                            </Panel.Heading>
                         </Panel>
                     </Row>
                     {this.state && this.state.original &&
-                    <Row style={{marginTop: '5px'}}>
+                    <Row style={{marginTop: '0px'}}>
                         <Col md={12} style={styles.originalContainer}>
                             <Col md={5} style={{margin: 'auto'}}>
                                 <Image src={this.state.original.image} thumbnail/>
@@ -388,19 +396,19 @@ class VerrattiW extends React.Component {
                                 </Row>
 
                                 <Row>
-                                    <h4>Author: {this.state.original.author}</h4>
+                                    <h4>Tác giả: {this.state.original.author}</h4>
                                 </Row>
 
                                 <Row>
-                                    <h4>Rating: {this.state.original.rating}</h4>
+                                    <h4>Đánh giá: {parseFloat(this.state.original.rating).toFixed(1)}</h4>
                                 </Row>
 
                                 <Row>
-                                    <h4>Translator: {this.state.original.translator}</h4>
+                                    <h4>Dịch giả: {this.state.original.translator}</h4>
                                 </Row>
 
                                 <Row>
-                                    <h4>Publisher: {this.state.original.publisher}</h4>
+                                    <h4>Nhà xuất bản: {this.state.original.publisher}</h4>
                                 </Row>
                             </Col>
                         </Col>
@@ -409,7 +417,7 @@ class VerrattiW extends React.Component {
                     {this.state && this.state.original &&
                     <Row>
                         <Col md={12}>
-                            <h5>{this.state.original.number_exchange} book(s) are available now</h5>
+                            <h5>{this.state.original.number_exchange} cuốn sách đang có thể cho mượn</h5>
                             <Button
                                 style={{
                                     margin: '8px 8px',
@@ -417,7 +425,7 @@ class VerrattiW extends React.Component {
                                     border: 'solid 1px #9b859b',
                                     color: '#9b859b'
                                 }}>
-                                Add to my book
+                                Thêm vào sách của tôi
                             </Button>
 
                             <Button
@@ -433,7 +441,7 @@ class VerrattiW extends React.Component {
                                     }
                                 }
                             >
-                                Get this book
+                                Mượn sách
                             </Button>
                         </Col>
                     </Row>
@@ -446,9 +454,9 @@ class VerrattiW extends React.Component {
                                 padding: '8px'
                             }}>
                                 <u>Chi tiết:</u>
-                                <h5>Size: {this.state.original.size_width} x {this.state.original.size_height}</h5>
-                                <h5>Weight: {this.state.original.weight} g</h5>
-                                <h5>Total page: {this.state.original.total_page}</h5>
+                                <h5>Kích thước: {parseFloat(this.state.original.size_width).toFixed(1)} x {parseFloat(this.state.original.size_height).toFixed(1)} cm</h5>
+                                <h5>Cân nặng: {this.state.original.weight} g</h5>
+                                <h5>Tổng số trang: {this.state.original.total_page}</h5>
                                 {/*<h5>Ngày xuất bản: {this.state.original.publish_date}</h5>*/}
                                 <h5>Ngày xuất bản: {convertTime(this.state.original.publish_date)}</h5>
                                 <u>Tóm tắt:</u>
@@ -462,7 +470,15 @@ class VerrattiW extends React.Component {
                         <Panel
                             // style={{marginBottom: '0px'}}
                         >
-                            <Panel.Heading>Thông tin những người sở hữu</Panel.Heading>
+                            <Panel.Heading
+                                style={{
+                                    border: 'solid 1px #9b859b',
+                                    color: '#9b859b',
+                                    backgroundColor: '#fff'
+                                }}
+                            >
+                                <h4><b>Thông tin những người sở hữu</b></h4>
+                            </Panel.Heading>
                         </Panel>
                     </Row>
                     {this.state && this.state.instances &&
@@ -489,4 +505,4 @@ class VerrattiW extends React.Component {
     }
 }
 
-export default VerrattiW;
+export default BookDetail;

@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Carousel, Grid, Row, Col, Image} from 'react-bootstrap';
 
-import './SpotlightM.css';
+import '../css/SpotlightM.css';
 
 class SpotlightM extends React.Component {
     constructor(props){
@@ -29,21 +29,21 @@ class SpotlightM extends React.Component {
                     <Carousel
                         interval={2000}>
                         <Carousel.Item>
-                            <img width={900} height={500} alt="900x500" src={carour[0]} />
+                            <img width={900} height={500} alt="900x500" src={carour[1]} />
                             <Carousel.Caption>
                                 {/*<h3>First slide label</h3>*/}
                                 {/*<p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>*/}
                             </Carousel.Caption>
                         </Carousel.Item>
                         <Carousel.Item>
-                            <img width={900} height={500} alt="900x500" src={carour[1]} />
+                            <img width={900} height={500} alt="900x500" src={carour[3]} />
                             <Carousel.Caption>
                                 {/*<h3>Second slide label</h3>*/}
                                 {/*<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>*/}
                             </Carousel.Caption>
                         </Carousel.Item>
                         <Carousel.Item>
-                            <img width={900} height={500} alt="900x500" src={carour[2]} />
+                            <img width={900} height={500} alt="900x500" src={carour[4]} />
                             <Carousel.Caption>
                                 {/*<h3>Third slide label</h3>*/}
                                 {/*<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>*/}
@@ -53,13 +53,10 @@ class SpotlightM extends React.Component {
                 </Row>
                 <Row className="cardDiv">
                     <div className={"card"}>
-                    <Image height={300} src={carour[3]} thumbnail/>
+                    <Image height={300} src={carour[0]} thumbnail/>
                     </div>
                     <div className={"card"}>
-                    <Image height={300} src={carour[4]} thumbnail/>
-                    </div>
-                    <div className={"card"}>
-                    <Image height={300} src={carour[5]} thumbnail/>
+                    <Image height={300} src={carour[2]} thumbnail/>
                     </div>
                 </Row>
             </Grid>

@@ -1,0 +1,48 @@
+.container div .row div button {
+    /*width: 500px;*/
+    /*margin: auto;*/
+}
+
+.container div .row div {
+    /*display: flex;*/
+}
+
+.custom-modal {
+    width: 75%;
+    height: 50%;
+}
+
+.flex-container {
+    display: flex
+}
+
+.action-button {
+    min-width: 600px;
+    text-shadow: none;
+    color: #fff;
+    margin: auto;
+}
+
+.accept {
+    background-color: #4CAF50;
+}
+
+.decline {
+    background-color: #E53935;
+}
+
+.cancel {
+    background-color: #6200EA;
+}
+
+.view {
+    background-color: #F57F17;
+}
+
+.title-activity {
+    padding: 0px 0px;
+    background-color: #9b859b; 
+    color: #fff;
+    display: flex; 
+    margin-top: 12px;
+}

@@ -40,7 +40,8 @@
         margin: auto;
         border: solid 5px rgba(128, 0, 128, 0.29);
         border-radius: 3%;
-        background-image: url("../images/login_bg.jpg");
+        /*background-image: url("../images/login_bg.jpg");*/
+        background-size: cover;
     }
 }
 
